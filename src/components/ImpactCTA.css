@@ -1,0 +1,72 @@
+.impact {
+    position: relative;
+    overflow: hidden;
+}
+
+.impact-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    z-index: -1;
+}
+
+.impact-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.impact-number {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.impact-item p {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+}
+
+.final-cta {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--surface-border);
+    border-radius: 32px;
+    padding: 4rem 2rem;
+    backdrop-filter: blur(10px);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cta-desc {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.btn-large {
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .impact-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-title {
+        font-size: 2rem;
+    }
+}

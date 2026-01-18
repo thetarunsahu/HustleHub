@@ -1,0 +1,109 @@
+.task-board {
+    background: var(--bg-primary);
+    min-height: 80vh;
+}
+
+.create-task-card {
+    background: var(--bg-tertiary);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--accent-primary);
+    max-width: 600px;
+    margin: 0 auto 4rem;
+}
+
+.create-task-card h3 {
+    margin-bottom: 1.5rem;
+    color: var(--accent-primary);
+}
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.task-form input,
+.task-form textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--surface-border);
+    padding: 0.8rem;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: inherit;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.task-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--surface-border);
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--text-secondary);
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.task-header h4 {
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.task-budget {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.task-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.task-footer {
+    display: flex;
+    gap: 1rem;
+    border-top: 1px solid var(--surface-border);
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.task-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.full-width {
+    width: 100%;
+}
