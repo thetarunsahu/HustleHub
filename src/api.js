@@ -43,7 +43,24 @@ export const api = {
             headers: getHeaders(),
             body: JSON.stringify(taskData)
         });
+
         if (!res.ok) throw new Error((await res.json()).message || 'Failed to create task');
         return res.json();
+    },
+
+    // NEW: Sync Firebase User with MongoDB
+    syncFirebaseUser: async (userData) => {
+        const res = await fetch(`${BASE_URL}/auth/firebase`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Sync failed');
+
+        // Store backend token for protected routes
+        if (data.token) localStorage.setItem('token', data.token);
+
+        return data.user;
     }
 };

@@ -14,7 +14,14 @@ const ProblemSolution = () => {
 
                 <div className="comparison-grid">
                     {/* Problem Side */}
-                    <div className="problem-card">
+                    {/* Problem Side */}
+                    <motion.div
+                        className="problem-card"
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
                         <h3 className="card-title text-muted">The Old Way</h3>
                         <ul className="comparison-list">
                             <li>
@@ -39,13 +46,16 @@ const ProblemSolution = () => {
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </motion.div>
 
                     {/* Solution Side */}
                     <motion.div
                         className="solution-card"
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
                         whileHover={{ scale: 1.02 }}
-                        transition={{ type: 'spring', stiffness: 300 }}
                     >
                         <div className="solution-glow"></div>
                         <h3 className="card-title text-gradient">The HustleHub Way</h3>

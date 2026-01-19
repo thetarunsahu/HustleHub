@@ -1,0 +1,49 @@
+.balance-card {
+    background: linear-gradient(135deg, var(--accent-primary), #6d28d9);
+    padding: 2.5rem;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+    color: white;
+}
+
+.balance-info h2 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.history-table th,
+.history-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--surface-border);
+}
+
+.history-table th {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.status {
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.status.completed {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.positive {
+    color: #10b981;
+    font-weight: 600;
+}

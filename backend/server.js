@@ -15,53 +15,58 @@ app.use(cors({
     credentials: true
 }));
 
-// Routes
+// Components-based Routes
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
-// Database Connection
-const PORT = process.env.PORT || 5000;
+// Database Connection (Optimized for Serverless)
+// Vercel functions are stateless, so we need to cache the connection
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/hustlehub';
+let isConnected = false;
 
-console.log(`Connecting to MongoDB at ${MONGO_URI}...`);
+const connectDB = async () => {
+    if (isConnected) {
+        return;
+    }
 
-mongoose.connect(MONGO_URI, {
-    serverSelectionTimeoutMS: 5000
-})
-    .then(() => {
-        console.log('✅ Connected to MongoDB (Local/Atlas)');
-        startServer();
-    })
-    .catch(async (err) => {
-        console.error('❌ Local MongoDB Connection Failed:', err.message);
-        console.log('🔄 Attempting to start in-memory database for MVP...');
+    try {
+        const dbOptions = {
+            serverSelectionTimeoutMS: 5000,
+            dbName: 'hustlehub' // Ensure we use the correct DB
+        };
 
-        try {
-            const { MongoMemoryServer } = require('mongodb-memory-server');
-            const mongod = await MongoMemoryServer.create();
-            const uri = mongod.getUri();
+        await mongoose.connect(MONGO_URI, dbOptions);
+        isConnected = true;
+        console.log('✅ MongoDB Connected');
+    } catch (err) {
+        console.error('❌ MongoDB Connection Failed:', err.message);
+        // On Vercel, we can't really fallback to in-memory easily since it clears on restart
+        // But for local dev it might still be useful, though complicating the logic.
+        // For MVP simplicity, we'll stick to real Mongo or fail.
+    }
+};
 
-            await mongoose.connect(uri);
-            console.log('✅ Connected to In-Memory MongoDB');
-            console.log('📝 Note: Data will be lost when server restarts');
-            startServer();
-        } catch (memErr) {
-            console.error('❌ In-Memory DB Failed:', memErr.message);
-            console.log('⚠️  Starting server in OFFLINE mode');
-            startServer();
-        }
-    });
-
-function startServer() {
-    app.listen(PORT, () => {
-        console.log(`🚀 Server running on port ${PORT}`);
-    });
-}
+// Connect to DB on every request (Vercel caches the connection efficiently)
+app.use(async (req, res, next) => {
+    await connectDB();
+    next();
+});
 
 // Default Route
 app.get('/', (req, res) => {
     res.send('HustleHub Backend is Running');
 });
+
+// ⚠️ ONLY listen if running locally (not in Vercel)
+if (require.main === module) {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running on port ${PORT}`);
+    });
+}
+
+// Export the app for Vercel
+module.exports = app;

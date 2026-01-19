@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldCheck, Zap, BookOpen, Users } from 'lucide-react';
+import { motion } from 'framer-motion';
 import './Features.css';
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
@@ -21,28 +22,39 @@ const Features = () => {
                     <p className="section-subtitle">Built specifically for the college lifestyle.</p>
                 </div>
 
-                <div className="features-grid">
-                    <FeatureCard
-                        icon={Zap}
-                        title="AI Guidance"
-                        description="Not sure how to start? Our AI suggests gigs based on your simple skills."
-                    />
-                    <FeatureCard
-                        icon={BookOpen}
-                        title="No Portfolio? No Problem"
-                        description="Your college reputatation is your resume. Start earning from day one."
-                    />
-                    <FeatureCard
-                        icon={ShieldCheck}
-                        title="Safe Payments"
-                        description="Escrow-protected payments. Money is released as soon as the task is done."
-                    />
-                    <FeatureCard
-                        icon={Users}
-                        title="Campus Exclusive"
-                        description="Work with peers you trust. Restricted to verified college emails only."
-                    />
-                </div>
+                <motion.div
+                    className="features-grid"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={{
+                        hidden: { opacity: 0 },
+                        visible: {
+                            opacity: 1,
+                            transition: {
+                                staggerChildren: 0.1
+                            }
+                        }
+                    }}
+                >
+                    {[
+                        { icon: Zap, title: "AI Guidance", desc: "Not sure how to start? Our AI suggests gigs based on your simple skills." },
+                        { icon: BookOpen, title: "No Portfolio? No Problem", desc: "Your college reputatation is your resume. Start earning from day one." },
+                        { icon: ShieldCheck, title: "Safe Payments", desc: "Escrow-protected payments. Money is released as soon as the task is done." },
+                        { icon: Users, title: "Campus Exclusive", desc: "Work with peers you trust. Restricted to verified college emails only." }
+                    ].map((feature, index) => (
+                        <motion.div
+                            key={index}
+                            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                        >
+                            <FeatureCard
+                                icon={feature.icon}
+                                title={feature.title}
+                                description={feature.desc}
+                            />
+                        </motion.div>
+                    ))}
+                </motion.div>
             </div>
         </section>
     );

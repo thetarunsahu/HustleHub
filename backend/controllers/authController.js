@@ -80,7 +80,84 @@ const loginUser = async (req, res) => {
     }
 }
 
+// NEW: Sync Firebase User
+const firebaseSync = async (req, res) => {
+    try {
+        const { uid, email, name, photoURL, phoneNumber, role } = req.body;
+
+        // Check if user exists
+        let user = await User.findOne({ $or: [{ email }, { uid }, { phoneNumber }] });
+
+        if (!user) {
+            // Create new user
+            user = new User({
+                name: name || 'User',
+                email: email,
+                phoneNumber: phoneNumber,
+                password: uid, // Use UID as dummy password
+                uid: uid,
+                role: role || 'student',
+                photoURL
+            });
+            await user.save();
+        } else {
+            // Update existing user info
+            if (!user.uid) user.uid = uid;
+            if (photoURL) user.photoURL = photoURL;
+            await user.save();
+        }
+
+        // Generate Token
+        const token = generateToken(user._id, user.role);
+
+        res.status(200).json({
+            token,
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                college: user.college
+            }
+        });
+    } catch (error) {
+        console.error('Firebase Sync Error:', error);
+        res.status(500).json({ message: 'Server Error during Sync' });
+    }
+};
+
+// NEW: Update Profile
+const updateProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        if (user) {
+            user.name = req.body.name || user.name;
+            user.skills = req.body.skills || user.skills;
+            user.college = req.body.college || user.college;
+            user.bio = req.body.bio || user.bio;
+            if (req.body.services) user.services = req.body.services;
+
+            const updatedUser = await user.save();
+            res.json({
+                _id: updatedUser._id,
+                name: updatedUser.name,
+                email: updatedUser.email,
+                role: updatedUser.role,
+                skills: updatedUser.skills,
+                college: updatedUser.college,
+                bio: updatedUser.bio
+            });
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
 module.exports = {
     registerUser,
     loginUser,
+    firebaseSync,
+    updateProfile
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import './ImpactCTA.css';
 
-const ImpactCTA = () => {
+const ImpactCTA = ({ onOpenAuth }) => {
     return (
         <section id="impact" className="impact section-padding">
             <div className="impact-bg"></div>
@@ -25,7 +25,7 @@ const ImpactCTA = () => {
                     <h2 className="cta-title">Ready to start earning?</h2>
                     <p className="cta-desc">Join thousands of students turning free time into financial freedom.</p>
                     <div className="cta-buttons">
-                        <button className="btn-primary btn-large">Join HustleHub Now</button>
+                        <button className="btn-primary btn-large" onClick={onOpenAuth}>Join HustleHub Now</button>
                     </div>
                 </div>
             </div>

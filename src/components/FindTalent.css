@@ -1,0 +1,48 @@
+.talent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.talent-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--surface-border);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.talent-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.talent-skills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.skill-tag {
+    background: var(--bg-tertiary);
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.talent-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--surface-border);
+    padding-top: 1rem;
+}
+
+.rate {
+    font-weight: 600;
+    color: var(--text-primary);
+}

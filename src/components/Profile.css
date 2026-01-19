@@ -1,0 +1,223 @@
+.profile-section {
+    padding-top: 100px;
+    min-height: 90vh;
+}
+
+.profile-header-card {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    border: 1px solid var(--surface-border);
+}
+
+.profile-cover {
+    height: 150px;
+    background: linear-gradient(to right, #4c1d95, #8b5cf6);
+}
+
+.profile-main {
+    padding: 0 2rem 2rem;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5rem;
+    margin-top: -50px;
+}
+
+.avatar-wrapper {
+    position: relative;
+}
+
+.profile-avatar-lg {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid var(--bg-secondary);
+    object-fit: cover;
+    background: #000;
+}
+
+.camera-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: var(--accent-primary);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+}
+
+.profile-identity h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.sc-role {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--accent-primary);
+    padding: 0.2rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin: 0.5rem 0;
+}
+
+.sc-bio {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0.5rem 0 0;
+}
+
+.edit-toggle {
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
+/* Edit Mode Grid */
+.profile-grid-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.form-section {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--surface-border);
+}
+
+.form-section h3 {
+    margin-bottom: 1.5rem;
+    color: var(--accent-secondary);
+    border-bottom: 1px solid var(--surface-border);
+    padding-bottom: 0.5rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.icon-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.icon-input svg {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-muted);
+}
+
+.icon-input input {
+    width: 100%;
+    padding: 0.7rem 1rem 0.7rem 2.8rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--surface-border);
+    border-radius: 8px;
+    color: white;
+}
+
+.disabled-input {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* View Mode Details */
+.profile-details-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.view-card {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--surface-border);
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+.social-link.linkedin {
+    background: #0077b5;
+}
+
+.social-link.github {
+    background: #333;
+}
+
+.social-link.google {
+    background: #db4437;
+    border: none;
+    cursor: default;
+}
+
+.g-icon {
+    background: white;
+    color: #db4437;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .profile-main {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: -70px;
+    }
+
+    .edit-toggle {
+        margin: 1rem auto;
+    }
+}
