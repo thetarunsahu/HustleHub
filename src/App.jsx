@@ -9,7 +9,7 @@ import ImpactCTA from './components/ImpactCTA';
 import Footer from './components/Footer';
 import AuthModal from './components/AuthModal';
 import TaskBoard from './components/TaskBoard';
-import CursorFollower from './components/CursorFollower';
+import ChatWidget from './components/ChatWidget';
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -45,18 +45,18 @@ function AppContent() {
   return (
     <Router>
       <div className="app">
-        <CursorFollower />
         <Navbar onOpenAuth={() => setIsAuthOpen(true)} />
+        <ChatWidget /> {/* Added Chat Widget Globally */}
 
         <Routes>
           <Route path="/" element={
             isAuthenticated ? <Navigate to="/dashboard" /> : (
               <>
-                <Hero />
+                <Hero onOpenAuth={() => setIsAuthOpen(true)} />
                 <ProblemSolution />
                 <HowItWorks />
                 <Features />
-                <ImpactCTA />
+                <ImpactCTA onOpenAuth={() => setIsAuthOpen(true)} />
               </>
             )
           } />

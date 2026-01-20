@@ -39,19 +39,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-@media (pointer: fine) {
-  body {
-    cursor: none;
-  }
 
-  a,
-  button,
-  input,
-  textarea,
-  .interactive {
-    cursor: none;
-  }
-}
+/* Cursor styles removed to restore default system cursor */
 
 /* Global Animation Utilities */
 @keyframes fadeInUp {

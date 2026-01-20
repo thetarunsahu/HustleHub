@@ -4,6 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 
+import logoImg from '../assets/logo.jpg';
+
 const Navbar = ({ onOpenAuth }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,7 +34,9 @@ const Navbar = ({ onOpenAuth }) => {
             transition: 'all 0.3s ease'
         }}>
             <div className="container navbar-content">
-                <Link to="/" className="logo text-gradient">HustleHub</Link>
+                <Link to="/" className="logo-link">
+                    <img src={logoImg} alt="HustleHub" className="logo-image" />
+                </Link>
 
                 <div className="desktop-nav">
                     {!isAuthenticated && (
